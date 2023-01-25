@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Web_Security_Lab_Day3.Models.IPN>
+
+@{
+    ViewData["Title"] = "Transactions";
+}
+
+<div b-6eg8tbgho9="" style="text-align: center;">
+            <div b-6eg8tbgho9="" class="display-6"><strong b-6eg8tbgho9="">Deck Master</strong></div>
+        </div>
+        <hr />
+
+<div class="row">
+        <div class="col-sm-6" style="">
+            <span class="display-6">Transactions</span>
+        </div>
+        <div class="col-sm-6" style="">
+            <span class="d-flex justify-content-end">
+                <img src="/images/paypal.png" alt="PayPal" style="max-width: 200px;padding-bottom: 10px;">
+            </span>
+        </div>
+    </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            
+            <th>
+                Created
+            </th>
+            <th>
+               Name
+            </th>              
+            <th>
+                Email
+            </th>       
+            <th>
+                Amount
+            </th>     
+            <th>
+               MOP
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.create_time)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.payerFirstName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.payerEmail)
+            </td>
+        
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+          
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.paymentMethod)
+            </td>
+        
+         @*   <td>
+                <a asp-action="Edit" asp-route-id="@item.paymentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.paymentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.paymentID">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>
