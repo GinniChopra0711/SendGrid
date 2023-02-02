@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Web_Security_Lab_Day3.ViewModels.UserVM>
+
+@{
+    ViewData["Title"] = "UserRole";
+}
+
+<div b-6eg8tbgho9="" style="text-align: center;">
+    <div b-6eg8tbgho9="" class="display-6"><strong b-6eg8tbgho9="">Deck Master</strong></div>
+</div>
+
+
+
+<p>
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Users</th>
+            <th><a asp-action="Create"style="color:#26C6DA;">Create New User Role</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                    @item.Email
+                    </td>
+                <td style="color:#26C6DA;">
+                    @Html.ActionLink(
+                        "View Roles"
+                      , "Detail"
+                      , new { userName = item.Email })
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

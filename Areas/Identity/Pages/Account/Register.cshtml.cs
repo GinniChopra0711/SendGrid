@@ -18,7 +18,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Web_Security_Lab_Day3.Data;
+using Web_Security_Lab_Day3.Models;
 using static Web_Security_Lab_Day3.Services.ReCAPTCHA;
 
 namespace Web_Security_Lab_Day3.Areas.Identity.Pages.Account
@@ -32,6 +35,7 @@ namespace Web_Security_Lab_Day3.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IConfiguration _configuration;
+        private ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -39,7 +43,7 @@ namespace Web_Security_Lab_Day3.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IConfiguration configuration)
+            IConfiguration configuration, ApplicationDbContext context )
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -48,6 +52,9 @@ namespace Web_Security_Lab_Day3.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _configuration = configuration;
+            _context = context;
+
+
         }
 
         /// <summary>
@@ -75,6 +82,19 @@ namespace Web_Security_Lab_Day3.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
+
+
+
+            [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -141,6 +161,14 @@ namespace Web_Security_Lab_Day3.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    MyRegisteredUser registerUser = new MyRegisteredUser()
+                    {
+                        Email = Input.Email,
+                        FirstName = Input.FirstName,
+                        LastName = Input.LastName
+                    };
+                    _context.MyRegisteredUsers.Add(registerUser);
+                    _context.SaveChanges();
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Web_Security_Lab_Day3.ViewModels.RoleVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div b-6eg8tbgho9="" style="text-align: center;">
+    <div b-6eg8tbgho9="" class="display-6"><strong b-6eg8tbgho9="">Deck Master</strong></div>
+</div>
+
+<h1>Roles</h1>
+
+<p>
+    <a asp-action="Create" style="color:#26C6DA;">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+           @* <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

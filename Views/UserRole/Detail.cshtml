@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Web_Security_Lab_Day3.ViewModels.RoleVM>
+
+@{
+    ViewData["Title"] = "Detail";
+}
+<div b-6eg8tbgho9="" style="text-align: center;">
+    <div b-6eg8tbgho9="" class="display-6"><strong b-6eg8tbgho9="">Deck Master</strong></div>
+</div>
+
+<h3>@ViewBag.UserName</h3>
+
+<p>
+    @Html.ActionLink("Assign Roles", "Create",
+                     new { userName = @ViewBag.UserName })
+</p> 
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+   <p>
+            <a asp-controller="UserRole"
+               asp-action="Index">Back to Users</a>
+        </p>

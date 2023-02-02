@@ -34,24 +34,16 @@ namespace Web_Security_Lab_Day3.Controllers
         [Authorize]
         public IActionResult Transactions()
         {
-           // DbSet<IPN> items = _context.IPNs;
+            DbSet<IPN> items = _context.IPNs;
 
-            // dummy data
-
-            List<IPN> actions = new List<IPN>();
-
-            actions.Add(new IPN
+            foreach (var item in items)
             {
-                create_time = DateTime.Now.ToString("dd'/'MM'/'yyyy, HH:mm"),
-                payerFirstName= "Ginni",
-                payerEmail= "gchopra2@my.bcit.ca",
-                amount = "$3.55 CAD",
-                paymentMethod = "paypal",
-                paymentID = "123"
-            });
+                DateTime createDT = Convert.ToDateTime(item.create_time);
+                string stringCreateDT = createDT.ToString("dd'/'MM'/'yyyy, HH:mm");
+                item.create_time = stringCreateDT;
+            }      
 
-            //return View(items);
-            return View(actions);
+            return View(items);
         }
 
         // This method receives and stores
