@@ -11,7 +11,7 @@ using Web_Security_Lab_Day3.Data;
 namespace WebSecurityLabDay3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230202213344_initialcreate")]
+    [Migration("20230204001653_initialcreate")]
     partial class initialcreate
     {
         /// <inheritdoc />
